@@ -145,7 +145,7 @@ def recipe_post(request, id):
         comments = [comment.serialize() for comment in Comment.objects.filter(recipe_id=id)]
 
         # Paginate the comments
-        p = Paginator(comments, 10)
+        p = Paginator(comments, 6)
         page = request.GET.get('page')
         comments = p.get_page(page)
     except:
