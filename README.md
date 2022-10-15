@@ -64,6 +64,9 @@ This application contains static files and template files from these following w
 https://appseed.us
 https://colorlib.com/ 
 
+This application uses API from the website:
+https://spoonacular.com/food-api
+
 ## Django CLI Commands
 
 #### Verify Version
