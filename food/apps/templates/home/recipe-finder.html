@@ -1,0 +1,117 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %}Delicious - Food Blog Template | Home{% endblock %}
+
+{% block body %}
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../static/home/assets/img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Recipes</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Post Search -->
+        <div class="receipe-post-search mb-80">
+            <div class="container">
+                <form action="{% url 'recipe-finder' diet='standard' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            {{ form.query }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ form.ingredients }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ form.diet }}
+                        </div>
+                        <div class="col-12 col-lg-3 text-right">
+                            <button type="submit" class="btn delicious-btn">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if query %}
+        <div class="container h-100">
+            <div class="row h-100 align-items-left">
+                <div class="col-12">
+                    <div class="breadcumb-text text-left">
+                        <h2>Query Results</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="container h-100">
+            <div class="row h-100 align-items-left">
+                <div class="col-12">
+                    <div class="breadcumb-text text-left">
+                        <h2>Suggestions</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- ##### Top Catagory Area Start ##### -->
+        <section class="top-catagory-area section-padding-80-0">
+            <div class="container">
+                <div class="row">
+                    {% for recipe in recipes %}
+                    <!-- Top Catagory Area -->
+                    <div class="col-12 col-lg-6">
+                        <div class="single-top-catagory">
+                            <img src="{{ recipe.image }}" alt="" style="object-fit: cover; height: 206px; width: 540px;">
+                            <!-- Content -->
+                            <div class="top-cta-content">
+                                <h3>{{ recipe.title }}</h3>
+                                <a href="{% url 'recipe-post' id=recipe.id %}" class="btn delicious-btn">See Full Receipe</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-left">
+                    <div class="col-12">
+                        <div class="breadcumb-text text-left">
+                            <p style="margin-bottom: 40px;">
+                                {% if recipes.has_previous %}
+                                    <a href="?page=1">&laquo First</a>
+                                    <a href="?page={{ recipes.previous_page_number }}">Previous</a>
+                                {% endif %}
+            
+                                <!-- Don't show pagination if not required -->
+                                {% if recipes.paginator.num_pages != 1 %}
+                                <i>Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}</i>
+                                {% endif %}
+            
+                                {% if recipes.has_next %}
+                                    <a href="?page={{ recipes.next_page_number }}">Next</a>
+                                    <a href="?page={{ recipes.paginator.num_pages }}">Last &raquo</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ##### Top Catagory Area End ##### -->
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'home/assets/helpers.js' %}"></script>
+{% endblock %}

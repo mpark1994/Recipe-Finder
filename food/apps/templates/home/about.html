@@ -1,0 +1,127 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %}Delicious - Food Blog Template | About{% endblock %}
+
+{% block body %}
+    
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(static/home/assets/img/bg-img/breadcumb1.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>About us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### About Area Start ##### -->
+    <section class="about-area section-padding-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Why Recipe Finder?</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <h6 class="sub-heading pb-5">Ever had trouble finding the recipe that you are searching for? This is where the Recipe Finder comes in! Able to query for over five thousand recipes in less than a second, it is the perfect website for browsing the perfect recipe for your needs!</h6>
+
+                    <p class="text-center">Capable of searching for the recipe that you require through a variety of parameters, including your deitary needs, list of ingredients, and more! If you are ever in need to find the perfect recipe, please use Recipe Finder to your heart's content! Thank you very much!</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center mt-70">
+                <!-- Single Cool Fact -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-fact">
+                        <img src="static/home/assets/img/core-img/salad.png" alt="">
+                        <h3><span class="counter">5000</span>+</h3>
+                        <h6>Amazing Recipes</h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Fact -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-fact">
+                        <img src="static/home/assets/img/core-img/hamburger.png" alt="">
+                        <h3><span class="counter">115</span>K+</h3>
+                        <h6>Menu Items</h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Fact -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-fact">
+                        <img src="static/home/assets/img/core-img/rib.png" alt="">
+                        <h3><span class="counter">2600</span>+</h3>
+                        <h6>Ingredients</h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Fact -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-fact">
+                        <img src="static/home/assets/img/core-img/pancake.png" alt="">
+                        <h3><span class="counter">600</span>K+</h3>
+                        <h6>Products</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <img class="mb-70" src="static/home/assets/img/bg-img/about.png" alt="">
+                    <p class="text-center">If you have any questions regarding this product, do not hesitate to let me know via the Contact Us form below!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Contact Us</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form action="{% url 'about' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ contact_form.email }}
+                                </div>
+                                <div class="col-12">
+                                    {{ contact_form.subject }}
+                                </div>
+                                <div class="col-12">
+                                    {{ contact_form.message }}
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn delicious-btn mt-30" type="submit">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Area End ##### -->
+
+    {% endblock %}

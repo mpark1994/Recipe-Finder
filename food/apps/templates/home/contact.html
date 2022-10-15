@@ -1,0 +1,135 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %}Delicious - Food Blog Template | Contact{% endblock %}
+
+{% block body %}
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(static/home/assets/img/bg-img/breadcumb4.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Recipe</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Contact Information Area Start ##### -->
+    <div class="contact-information-area section-padding-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="logo mb-80">
+                        <img src="static/home/assets/img/logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Contact Text -->
+                <div class="col-12 col-lg-5">
+                    <div class="contact-text">
+                        <p>Choose the appropriate cateogory to contact me and your request will be directed to the right person</p>
+                        <p>You can also use the form below to send me a message!</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-3">
+                    <!-- Single Contact Information -->
+                    <div class="single-contact-information mb-30">
+                        <h6>Address:</h6>
+                        <p>481 Creekside Lane Avila <br>Beach, CA 93424</p>
+                    </div>
+                    <!-- Single Contact Information -->
+                    <div class="single-contact-information mb-30">
+                        <h6>Phone:</h6>
+                        <p>819-593-9283</p>
+                    </div>
+                    <!-- Single Contact Information -->
+                    <div class="single-contact-information mb-30">
+                        <h6>Email:</h6>
+                        <p>mpark1994@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Newsletter Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="newsletter-form bg-img bg-overlay" style="background-image: url(static/home/assets/img/bg-img/bg1.jpg);">
+                        {% if subscribed %}
+                        <form action="{% url 'subscribe' %}" method="post">
+                            {% csrf_token %}
+                            <!-- <input type="email" name="email" placeholder="Subscribe to newsletter"> -->
+                            {{ sub_form.email }}
+                            <button type="submit" class="btn delicious-btn w-100">Unsubscribe</button>
+                        </form>
+                        <p>You are already subscribed! To unsubscribe, submit the email that you have subscribed with!</p>
+                        {% else %}
+                        <form action="{% url 'subscribe' %}" method="post">
+                            {% csrf_token %}
+                            <!-- <input type="email" name="email" placeholder="Subscribe to newsletter"> -->
+                            {{ sub_form.email }}
+                            <button type="submit" class="btn delicious-btn w-100">Subscribe</button>
+                        </form>
+                        <p>Subscribe to get the latest information regarding new recipes on the market!</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Information Area End ##### -->
+
+    <!-- ##### Contact Form Area Start ##### -->
+    <div class="contact-area section-padding-0-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Get In Touch</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-form-area">
+                        <form action="{% url 'contact' %}" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ contact_form.email }}
+                                </div>
+                                <div class="col-12">
+                                    {{ contact_form.subject }}
+                                </div>
+                                <div class="col-12">
+                                    {{ contact_form.message }}
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button class="btn delicious-btn mt-30" type="submit">Send</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Contact Form Area End ##### -->
+
+    <!-- ##### Google Maps ##### -->
+    <!-- UNADDED FEATURE FOR NOW -->
+    <!-- <div class="map-area">
+        <div id="googleMap"></div>
+    </div> -->
+
+    {% endblock %}
+
+    {% block script %}
+        <script src="{% static 'home/assets/contact.js' %}"></script>
+    {% endblock %}

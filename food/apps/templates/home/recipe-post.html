@@ -1,0 +1,215 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %}Delicious - Food Blog Template | Home{% endblock %}
+
+{% block body %}
+
+    <!-- ##### Breadcumb Area Start ##### -->
+    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(../static/home/assets/img/bg-img/breadcumb3.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcumb-text text-center">
+                        <h2>Recipes</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <div class="receipe-post-area section-padding-80">
+
+        <!-- Receipe Post Search -->
+        <div class="receipe-post-search mb-80">
+            <div class="container">
+                <form action="{% url 'recipe-finder' diet='standard' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            {{ recipeform.query }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ recipeform.ingredients }}
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            {{ recipeform.diet }}
+                        </div>
+                        <div class="col-12 col-lg-3 text-right">
+                            <button type="submit" class="btn delicious-btn">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Receipe Slider -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="receipe-slider owl-carousel">
+                        <img src="{{ recipes.image }}" alt="" 
+                        style="object-fit: cover; height: auto; max-height: 425px; width: auto; max-width: 1110px; margin-left: auto; margin-right: auto;">
+                        <!-- <img src="{% static 'home/assets/img/bg-img/bg5.jpg' %}" alt="">
+                        <img src="{% static 'home/assets/img/bg-img/bg5.jpg' %}" alt=""> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receipe Content Area -->
+        <div class="receipe-content-area">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <div class="receipe-headline my-5">
+                            <!-- <span>April 05, 2018</span> -->
+                            <h2>{{ recipes.title }}</h2>
+                            <div class="receipe-duration">
+                                <h6>Prep: {{ recipes.readyInMinutes }} mins</h6>
+                                <!-- <h6>Cook: 30 mins</h6> -->
+                                <h6>Yields: {{ recipes.servings }} Servings</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="receipe-ratings text-right my-5">
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <!-- <i class="fa fa-star-o" aria-hidden="true"></i> -->
+                            </div>
+                            {% if favorited %}
+                            <a class="btn delicious-btn" onclick="favorite(this, {{ recipes.id }})" id="favorite" style="color: white;">Unfavorite Recipe</a>
+                            {% else %}
+                            <a class="btn delicious-btn" onclick="favorite(this, {{ recipes.id }})" id="favorite" style="color: white;">Favorite Recipe</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        {% for instruction in recipes.analyzedInstructions.0.steps %}
+                        <!-- Single Preparation Step -->
+                        <div class="single-preparation-step d-flex">
+                            <h4>{{ instruction.number }}.</h4>
+                            <p>{{ instruction.step }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Ingredients -->
+                    <div class="col-12 col-lg-4">
+                        <div class="ingredients">
+                            <h4>Ingredients</h4>
+
+                            <!-- Custom Checkbox -->
+                            {% for ingredient in recipes.extendedIngredients %}
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="{{ ingredient.id }}">
+                                <label class="custom-control-label" for="{{ ingredient.id }}">{{ ingredient.original }}</label>
+                            </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+
+                {% if comments %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-left">
+                            <h3>What People Said About the Recipe</h3>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- ##### Accordians ##### -->
+                <div class="col-12 col-lg-6">
+                    <div class="accordions mb-80" id="accordion" role="tablist" aria-multiselectable="true">
+                        {% for comment in comments %}
+                        <!-- Single Accordian Area -->
+                        <div class="panel single-accordion">
+                            <h6>
+                                <!-- Change href and match id on div on bottom to function correctly -->
+                                <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo" data-parent="#accordion" data-toggle="collapse" href="#post-{{ comment.post_id }}">{{ comment.subject }}
+                                        <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                        <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                        </a>
+                            </h6>
+                            <div id="post-{{ comment.post_id }}" class="accordion-content collapse">
+                                <p>{{ comment.comment }}</p>
+                                <p>Posted By: <a href="{% url 'profile' user=comment.person %}"><b>{{ comment.person }}</b></a>
+                                    {% if comment.person == user %}
+                                    <b id="{{ comment.post_id }}" onclick="comment(this, {{ comment.post_id }})" style="float:right; cursor: pointer;">DELETE</b>
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div style="margin-top: 40px;">
+                            <p>
+                                {% if comments.has_previous %}
+                                    <a href="?page=1">&laquo First</a>
+                                    <a href="?page={{ comments.previous_page_number }}">Previous</a>
+                                {% endif %}
+
+                                <!-- Don't show pagination if not required -->
+                                {% if comments.paginator.num_pages != 1 %}
+                                <i>Page {{ comments.number }} of {{ comments.paginator.num_pages }}</i>
+                                {% endif %}
+
+                                {% if comments.has_next %}
+                                    <a href="?page={{ comments.next_page_number }}">Next</a>
+                                    <a href="?page={{ comments.paginator.num_pages }}">Last &raquo</a>
+                                {% endif %}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-area">
+                            <h5 style="margin-bottom: 40px;"><i>Let Others Know What You Think!</i></h5>
+                            <form method="post">
+
+                                {% csrf_token %}
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- <input type="text" class="form-control" id="subject" placeholder="Subject"> -->
+                                        {{ form.subject }}
+                                    </div>
+                                    <div class="col-12">
+                                        <!-- <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message"></textarea> -->
+                                        {{ form.message }}
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn delicious-btn mt-30" type="submit">Post Comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    {% block script %}
+        <script src="{% static 'home/assets/helpers.js' %}"></script>
+    {% endblock %}

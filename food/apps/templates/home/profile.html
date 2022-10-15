@@ -1,0 +1,79 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block body %}
+
+    
+    <section class="best-receipe-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        {% if favorites %}
+                            {% if request.user == user %}
+                                <h3>You Have Favorited:</h3>
+                            {% else %}
+                                <h3>{{ user }} Has Favorited:</h3>
+                            {% endif %}
+                        {% else %}
+                            {% if request.user == user %}
+                                <h3>You Have Not Favorited Any Recipes</h3>
+                            {% else %}
+                                <h3>{{ user }} Has Not Favorited Any Recipes</h3>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for favorite in favorites %}
+                <!-- Single Best Receipe Area -->
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-best-receipe-area mb-30">
+                        <img src="{{ favorite.image }}" alt="">
+                        <div class="receipe-content">
+                            <a href="{% url 'recipe-post' id=favorite.id %}">
+                                <h5>{{ favorite.title }}</h5>
+                            </a>
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="container h-100">
+            <div class="row h-100 align-items-left">
+                <div class="col-12">
+                    <div class="breadcumb-text text-left">
+                        <p style="margin-bottom: 40px;">
+                            {% if favorites.has_previous %}
+                                <a href="?page=1">&laquo First</a>
+                                <a href="?page={{ favorites.previous_page_number }}">Previous</a>
+                            {% endif %}
+        
+                            <!-- Don't show pagination if not required -->
+                            {% if favorites.paginator.num_pages != 1 %}
+                            <i>Page {{ favorites.number }} of {{ favorites.paginator.num_pages }}</i>
+                            {% endif %}
+        
+                            {% if favorites.has_next %}
+                                <a href="?page={{ favorites.next_page_number }}">Next</a>
+                                <a href="?page={{ favorites.paginator.num_pages }}">Last &raquo</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
