@@ -2,7 +2,7 @@
 
 #### Video Demo:  <https://youtu.be/1MnD-zA-Brw>
 
-Website Demo: https://mattrecipefinder.herokuapp.com/
+Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
 
 ## Description:
 This is my Recipe Finder App created using the Django Framework.
