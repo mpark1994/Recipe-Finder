@@ -61,7 +61,7 @@ https://colorlib.com/
 This application uses API from the website:
 https://spoonacular.com/food-api
 
-#### Bugs
+#### Known Bugs
 Contact me forms do not operate as intended on Heroku - works fine on user's own OS if files are manually downloaded.
 
 ## Django CLI Commands
