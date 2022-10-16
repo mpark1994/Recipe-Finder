@@ -34,13 +34,7 @@ with many query options.
 Along with the design choices above, I also wanted the application to be more interactive between potential users, being able to communicate
 with each other via comments on recipes (and possibily in the future, through their blog posts).
 
-#### Distinctiveness and Complexity
-For this project, I believe it satisfies the distinctiveness and complexity of the application for the following reasons - It is able to borrow
-the lessons learnt from previous projects, such as updating CRUD operations of the SQL database, as well as having social media elements like
-browsing different user profiles and commenting. There is also an added layer in this specific project, using an external API to gather
-information to display for the users. Finally, the application also uses variety of techniques outsided previous projects such as Jquery,
-and SCSS.
-
+#### Application Content
 As for the content of the application - it consists of two main apps - Authenticate and Home.
 Authenticate covers the log in and register part of the Recipe Finder Application. There are a variety of templates and static files
 to create a working log in and register page for the user to access.
