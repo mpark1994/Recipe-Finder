@@ -70,7 +70,7 @@ This application uses API from the website:
 https://spoonacular.com/food-api
 
 #### Bugs
-Contact me forms do not operate under Heroku - works fine on localhost.
+Contact me forms do not operate as intended on Heroku - works fine on user's own OS if files are manually downloaded.
 
 ## Django CLI Commands
 
