@@ -1,6 +1,10 @@
 # Recipe Finder Application
 
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
+To log in without registering, use my guest account:
+
+Username: guest
+Password: guest123456
 
 ## Description:
 This is my Recipe Finder App created using the Django Framework.
