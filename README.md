@@ -3,8 +3,8 @@
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
 To log in without registering, use my guest account:
 
-Username: guest <br>
-Password: guest123456
+**Username**: guest <br>
+**Password**: guest123456
 
 ## Description:
 This is my Recipe Finder App created using the Django Framework.
@@ -58,11 +58,11 @@ almost like a social media website. Since the purpose of this application is to 
 as of yet.
 
 #### Credits & Citations
-This application contains static files and template files from these following websites: 
-https://appseed.us
+This application contains static files and template files from these following websites: <br>
+https://appseed.us <br>
 https://colorlib.com/ 
 
-This application uses API from the website:
+This application uses API from the website: <br>
 https://spoonacular.com/food-api
 
 #### Known Bugs
@@ -77,5 +77,5 @@ You can verify your Django installation by executing `django-admin --version` to
 If you are connecting to the internet behind a proxy, there might be problem in running the commands `easy_install pip` and 
 `pip install django`. Set the environment variables for proxy configuration in the command prompt as follows:
 
-`set http_proxy=http://username:password@proxyserver:proxyport`
+`set http_proxy=http://username:password@proxyserver:proxyport` <br>
 `set https_proxy=https://username:password@proxyserver:proxyport`
