@@ -3,7 +3,7 @@
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
 To log in without registering, use my guest account:
 
-Username: guest
+Username: guest <br>
 Password: guest123456
 
 ## Description:
