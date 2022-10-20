@@ -1,7 +1,7 @@
 # Recipe Finder Application
 
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
-To log in without registering, use my guest account:
+To log in without registering, use the guest account:
 
 **Username**: guest <br>
 **Password**: guest123456
