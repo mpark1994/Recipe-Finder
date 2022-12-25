@@ -1,6 +1,6 @@
 # Recipe Finder Application
 
-#### https://www.youtube.com/watch?v=GOjkTwapshU Video Demo
+#### Video Demo https://www.youtube.com/watch?v=GOjkTwapshU
 
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
 *To log in ***without registering***, use the guest account:*
