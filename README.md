@@ -8,7 +8,7 @@
 **Username**: guest <br>
 **Password**: guest123456
 
-![image](https://user-images.githubusercontent.com/109865132/210405934-c2758500-b008-4e50-90ff-8956a6193d1d.png)
+![image](https://user-images.githubusercontent.com/109865132/210407487-7433baf1-beeb-41ae-932e-a67a0ea6aa12.png)
 
 ## Description:
 This is my Recipe Finder App created using the Django Framework.
