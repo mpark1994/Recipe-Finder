@@ -83,3 +83,6 @@ If you are connecting to the internet behind a proxy, there might be problem in 
 
 `set http_proxy=http://username:password@proxyserver:proxyport` <br>
 `set https_proxy=https://username:password@proxyserver:proxyport`
+
+## Additional Notes
+This repository will not have any subsequent updates as it is not directly linked to Heroku where the website is hosted. Any future updates to the website will be updated through the Heroku respository instead.
