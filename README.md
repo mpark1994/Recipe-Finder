@@ -3,6 +3,7 @@
 #### Video Demo https://www.youtube.com/watch?v=GOjkTwapshU
 
 #### Website Deployment Via Heroku: https://mattrecipefinder.herokuapp.com/
+<u> NOTE: No longer in service due to costs! </u>
 *To log in ***without registering***, use the guest account:*
 
 **Username**: guest <br>
